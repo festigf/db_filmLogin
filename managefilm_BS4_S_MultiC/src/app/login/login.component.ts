@@ -61,23 +61,15 @@ export class LoginComponent implements OnInit {
         this.authenticationService.login(this.userForm.value)
             .subscribe(
                 data => {
-                    console.log(data)
-                    this.router.navigate([this.returnUrl]);
+                    console.log("data login:")
+                    console.log(data.data.url)
+                    this.router.navigate([data.data.url]); //this.returnUrl]);
                 },
                 error => {
                     //this.alertService.error(error);
-                    console.log("error login:"+error)
-                    this.loading = false;
+                    console.log("error login:"+error.url)
+                    this.router.navigate(["/login"]);
                 });
-        /* console.log(this.attoreForm.value);
-         this.sd.modInsAttore(this.attoreForm.value)
-         .subscribe(res => {
-           if (res.status==200)
-             { console.log("emit");
-               this.onEditSave.emit(this.attoreForm.value);
-             }
-           }
-       );*/
        }    
     
 

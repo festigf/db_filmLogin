@@ -1,4 +1,6 @@
 import { Component,OnInit } from '@angular/core';
+import { AlertService, AuthenticationService } from './_services/index';
+
 import {Attore } from '../Types_dbfilm/Attore';
 import {ServiceDbfilmService} from '../Services/service-dbfilm.service';
 import { FilmComponent } from './film/film.component';
@@ -9,9 +11,11 @@ import { FilmComponent } from './film/film.component';
 })
 export class AppComponent implements OnInit {
   title = 'app';
-  ngOnInit(){}
+  ngOnInit(){
+    this.authenticationService.logout();
+  }
   loadedFeature = 'film';
-
+  constructor(private authenticationService:AuthenticationService) { }
   onNavigate(feature: string) {
     this.loadedFeature = feature;
   }

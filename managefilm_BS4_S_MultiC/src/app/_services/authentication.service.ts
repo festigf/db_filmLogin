@@ -23,25 +23,21 @@ export class AuthenticationService {
           .set('username',   user.username)
           .set('password',   user.password);
 
-/*          const params = new HttpParams()
-          .set('codAttore',   attore.codAttore.toString())
-          .set('nome',        attore.nome)
-          .set('annoNascita', attore.annoNascita.toString())
-          .set('nazionalita', attore.nazionalita);
-*/
+
         const options = {
             headers,
             params
           };
 
         console.log(options);  
-        //return this.http.put("http://localhost:3000/ModAttore", null, options)
+        
         return this.http.put('http://localhost:3000/authenticate',null, options)
             .map(user => {
                 // login successful if there's a jwt token in the response
                 if (user) { // && user.token
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user));
+                    console.log("currentUser"+localStorage.getItem('currentUser'));
                 }
 
                 return user;
@@ -51,5 +47,6 @@ export class AuthenticationService {
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
+        console.log("remove currentUser")
     }
 }

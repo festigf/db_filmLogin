@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, OnInit } from '@angular/core';
 //import {HttpClientModule} from '@angular/http'
 import { HttpModule } from '@angular/http';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -51,4 +51,11 @@ import { AlertService, AuthenticationService } from './_services/index';
   bootstrap: [AppComponent]
   
 })
-export class AppModule { }
+export class AppModule implements OnInit { 
+  constructor(private authenticationService:AuthenticationService) { }
+  ngOnInit(){
+    console.log("AppModule");
+    this.authenticationService.logout();
+  }
+
+}

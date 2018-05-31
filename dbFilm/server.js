@@ -60,7 +60,7 @@ app.get("/getData",function(req,res){
 			data.push(req.query.pageIndex);
 			data.push(req.query.pageSize);
 			
-			console.log(data);
+			//console.log(data);
 	        
 			connection.query(sQuery,data,function(err,rows,fileds){
 		      if (err) 
@@ -181,6 +181,13 @@ app.put('/authenticate', function(req, res){
 		data:    {username:"pippo",
 				  url:"/"}   
 	});
+	/*
+	res.status(401).send({ 
+		status:  200, 
+		Message: "Auth OK",
+		data:    {username:"pippo",
+				  url:"/login"}   
+	});*/
 });
     
 app.listen(3000);
