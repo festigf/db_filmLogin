@@ -80,11 +80,11 @@ app.delete('/delAttore', function(req, res) {
 	connection = mysql.createConnection(sConnection);
     connection.connect(function(err){ // callback
     if(!err) {
-      var sQuery="delete from attori where CodAttore=?;";
+      var sQuery="delete from attori where codAttore=?;";
       var data=[];
 	 // console.log("del Attore:"+util.inspect(req, {showHidden: false, depth: null}));
-      data.push(req.query.CodAttore);
-	  console.log(req.query.CodAttore);
+      data.push(req.query.codAttore);
+	  console.log(req.query.codAttore);
 	  console.log(data[0]);
       connection.query(sQuery, data, function(err, rows, fields) {
 				console.log("err");
@@ -110,23 +110,25 @@ app.delete('/delAttore', function(req, res) {
   });
 });
 
-// aggiorna i dati di un attore tra,ite CodAttore. Se non trovato lo inserisce
+// aggiorna i dati di un attore tra,ite codAttore. Se non trovato lo inserisce
 app.put('/ModAttore', function(req, res){
-	console.log(req.body.Nome);
+	//console.log("ModAttore:"+util.inspect(req, {showHidden: false, depth: null}));
+
+	console.log(req.query.nome);
 	//res.setHeader('Access-Control-Allow-Origin','*');
 	connection = mysql.createConnection(sConnection);
 	connection.connect(function(err){
     if(!err) {
-		var sQuery="UPDATE Attori SET Nome = ?, AnnoNascita = ?, Nazionalita = ? WHERE CodAttore = ?;";
+		var sQuery="UPDATE attori SET nome = ?, annoNascita = ?, nazionalita = ? WHERE codAttore = ?;";
 		var data = [];
-		console.log(req.query.CodAttore);
-		console.log(req.query.Nome);
-		console.log(req.query.AnnoNascita);
-		console.log(req.query.Nazionalita);
-		data.push(req.query.Nome);
-		data.push(req.query.AnnoNascita);
-		data.push(req.query.Nazionalita);
-		data.push(req.query.CodAttore);
+		console.log(req.query.codAttore);
+		console.log(req.query.nome);
+		console.log(req.query.annoNascita);
+		console.log(req.query.nazionalita);
+		data.push(req.query.nome);
+		data.push(req.query.annoNascita);
+		data.push(req.query.nazionalita);
+		data.push(req.query.codAttore);
 		connection.query(sQuery, data, function(err, rows, fields) {
 			if (err) 
 			{	console.log(err);
@@ -134,7 +136,7 @@ app.put('/ModAttore', function(req, res){
 			}
 			else if (rows.affectedRows==0)
 			{
-				var sQuery2="INSERT INTO Attori(Nome, AnnoNascita, Nazionalita) VALUES(?,?,?)";
+				var sQuery2="INSERT INTO attori(nome, annoNascita, nazionalita) VALUES(?,?,?)";
 				connection.query(sQuery2, data, function(err, rows, fields) {
 					if (err) 
 					{
@@ -169,10 +171,10 @@ app.put('/ModAttore', function(req, res){
 });
 
 app.put('/authenticate', function(req, res){
-	 console.log("authenticate:"+util.inspect(req, {showHidden: false, depth: null}));
+//	 console.log("authenticate:"+util.inspect(req, {showHidden: false, depth: null}));
      
-	console.log(req.body.Username);
-	console.log(req.body.Password);
+	console.log(req.query.username);
+	console.log(req.query.password);
 	res.status(200).send({ 
 		status:  200, 
 		Message: "Auth OK",

@@ -4578,7 +4578,7 @@ del Attore:IncomingMessage {
   trailers: {},
   rawTrailers: [],
   upgrade: false,
-  url: '/delAttore?CodAttore=1',
+  url: '/delAttore?codAttore=1',
   method: 'DELETE',
   statusCode: null,
   statusMessage: null,
@@ -5228,7 +5228,7 @@ del Attore:IncomingMessage {
   _dumped: false,
   next: [Function: next],
   baseUrl: '',
-  originalUrl: '/delAttore?CodAttore=1',
+  originalUrl: '/delAttore?codAttore=1',
   _parsedUrl: 
    Url {
      protocol: null,
@@ -5238,14 +5238,14 @@ del Attore:IncomingMessage {
      port: null,
      hostname: null,
      hash: null,
-     search: '?CodAttore=1',
-     query: 'CodAttore=1',
+     search: '?codAttore=1',
+     query: 'codAttore=1',
      pathname: '/delAttore',
-     path: '/delAttore?CodAttore=1',
-     href: '/delAttore?CodAttore=1',
-     _raw: '/delAttore?CodAttore=1' },
+     path: '/delAttore?codAttore=1',
+     href: '/delAttore?codAttore=1',
+     _raw: '/delAttore?codAttore=1' },
   params: {},
-  query: { CodAttore: '1' },
+  query: { codAttore: '1' },
   res: 
    ServerResponse {
      domain: null,

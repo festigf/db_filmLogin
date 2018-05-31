@@ -5,26 +5,26 @@
       <form novalidate [formGroup]="userForm" 
             (ngSubmit)="onSubmit(userForm.value)">
          <div class="form-group" >
-            <label for="Username">Username</label>
+            <label for="username">Username</label>
             <input 
                 type="text" 
                 class="form-control" 
-                name="Username" 
-                id="Username"
-                formControlName="Username" 
+                name="username" 
+                id="username"
+                formControlName="username" 
                 required 
             />
             
         </div>
           
         <div class="form-group" >
-            <label for="Password">Password</label>
+            <label for="password">Password</label>
             <input  
                 type="password" 
                 class="form-control" 
-                name="Password" 
-                id="Password" 
-                formControlName="Password" 
+                name="password" 
+                id="password" 
+                formControlName="password" 
             />
             
         </div>

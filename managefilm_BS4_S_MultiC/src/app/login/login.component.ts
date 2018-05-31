@@ -28,8 +28,8 @@ export class LoginComponent implements OnInit {
         // reset login status
         this.authenticationService.logout();
         this.userForm = new FormGroup({
-            Username: new FormControl("user1",Validators.required),
-            Password: new FormControl('user1',Validators.required)
+            username: new FormControl("user1",Validators.required),
+            password: new FormControl('user1',Validators.required)
           });
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -56,11 +56,12 @@ export class LoginComponent implements OnInit {
 
 
     onSubmit(formValue: User){
-        console.log(formValue.Username);
+        console.log(formValue.username);
         console.log(this.userForm.value);
         this.authenticationService.login(this.userForm.value)
             .subscribe(
                 data => {
+                    console.log(data)
                     this.router.navigate([this.returnUrl]);
                 },
                 error => {

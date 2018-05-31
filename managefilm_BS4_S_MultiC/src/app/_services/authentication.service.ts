@@ -15,19 +15,27 @@ export class AuthenticationService {
 
     login(user:User): Observable<any> {
         console.log(user);
-        console.log(user.Username);
-        console.log(user.Password);
+        console.log(user.username);
+        console.log(user.password);
         let headers = new HttpHeaders();
         headers = headers.set('Content-Type', 'application/json; charset=utf-8');
         const params = new HttpParams()
-          .set('Username',   user.Username)
-          .set('Password',   user.Password);
+          .set('username',   user.username)
+          .set('password',   user.password);
+
+/*          const params = new HttpParams()
+          .set('codAttore',   attore.codAttore.toString())
+          .set('nome',        attore.nome)
+          .set('annoNascita', attore.annoNascita.toString())
+          .set('nazionalita', attore.nazionalita);
+*/
         const options = {
             headers,
             params
           };
 
         console.log(options);  
+        //return this.http.put("http://localhost:3000/ModAttore", null, options)
         return this.http.put('http://localhost:3000/authenticate',null, options)
             .map(user => {
                 // login successful if there's a jwt token in the response
