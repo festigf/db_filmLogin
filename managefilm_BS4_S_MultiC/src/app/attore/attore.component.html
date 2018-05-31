@@ -1,0 +1,72 @@
+<div class="container-fluid">
+  <div class="row">
+      <div class="col">
+
+      </div>
+  </div>
+  <div class="row ">
+  <div class="col-md-6">
+    <div class="row">
+        <h2 >Elenco Attori</h2>
+     </div>
+     <div class="row">
+        
+    <button type="button" 
+            class="btn btn-success btn-lg " (click)="OnInsert()">
+            Insert
+    </button>    
+  </div>
+    <div class="row" *ngFor="let item of attori; let i=index">
+      <div class="col" style="max-width:20px" >
+          {{item.codAttore}}
+      </div>
+      <div class="col" style="max-width:230px">
+          {{item.nome}}
+      </div>      
+      <div class="col" style="max-width:50px">
+          <button type="button" 
+             class="btn btn-danger" (click)="OnDel(item.codAttore)">
+            del
+        </button>
+      </div>
+      <div class="col" style="max-width:50px">
+          <button type="button" 
+             class="btn btn-warning" (click)="OnEdit(item)">
+            Edit
+        </button>
+      </div>
+      <div class="col" style="max-width:50px">
+          <button type="button" 
+             class="btn btn-primary" (click)="OnAttoreFilms(item)">
+            films
+        </button>
+      </div>
+    </div> 
+    <app-pagination 
+      [page]="page"
+      [nPages]="nPages"
+      (onClick)="onClick($event)">
+    </app-pagination>
+  </div>
+  <div class="col-md-6">
+      <app-attore-details 
+        [attore]="editAttore"
+        (onEditSave)="onEditSave($event)"
+        (onEditCancel)="onEditCancel($event)"
+        ></app-attore-details>
+  </div> 
+</div> 
+
+<!-- sezione messaggistica errori -->
+<div *ngIf="errmsg">
+  <div class="alert alert-warning " role="alert" id="errors">
+    <button type="button" class="close" data-dimdiss="alert" 
+      aria-label="Close"
+      (click)="errmsg=null"  >
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <strong>{{errmsg}}</strong> 
+  </div>
+</div>
+
+</div>
