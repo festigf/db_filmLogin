@@ -12,8 +12,14 @@ import { FilmComponent } from './film/film.component';
 export class AppComponent implements OnInit {
   title = 'app';
   ngOnInit(){
-    this.authenticationService.iniLogout().subscribe(esito => esito);
+  /*  this.authenticationService
+      .iniLogout().subscribe(
+        esito =>{
+                  console.log("appComponent:"+esito)
+                }
+      );*/
   }
+
   loadedFeature = 'film';
   constructor(private authenticationService:AuthenticationService) { }
   onNavigate(feature: string) {

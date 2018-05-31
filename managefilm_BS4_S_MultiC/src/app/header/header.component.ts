@@ -1,6 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AlertService, AuthenticationService } from '../_services/index';
+//import { AlertService, AuthenticationService } from '../_services/index';
 import { RouteConfigLoadStart, Router } from '@angular/router';
 
 @Component({
@@ -9,11 +9,11 @@ import { RouteConfigLoadStart, Router } from '@angular/router';
 })
 export class HeaderComponent {
   public navbarCollapsed = true;
-  constructor(private authenticationService:AuthenticationService,
-              private router: Router,) { }
+ // constructor(private authenticationService:AuthenticationService,
+ //             private router: Router,) { }
 
   logout(){
-    this.authenticationService.logout();
-    this.router.navigate(["/login"]);
+   // this.authenticationService.logout();
+   // this.router.navigate(["/login"]);
   }
 }

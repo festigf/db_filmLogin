@@ -1,8 +1,4 @@
 ﻿import { Injectable } from '@angular/core';
-//import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-//import { Observable } from 'rxjs/Observable';
-//import 'rxjs/add/operator/map'
-
 import { Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
 import { HttpParams, HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -47,13 +43,13 @@ export class AuthenticationService {
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
-        console.log("remove currentUser")
+        console.log("logout remove currentUser")
     }
     
     iniLogout(): Observable<any> {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
-        console.log("remove currentUser");
-        return Observable.of("remove currentUser");
+        //console.log("ini remove currentUser");
+        return Observable.of("ini remove currentUser");
     }
 }

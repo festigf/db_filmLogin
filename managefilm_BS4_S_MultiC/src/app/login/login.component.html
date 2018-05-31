@@ -1,7 +1,5 @@
 ﻿<div class="col-md-6 col-md-offset-3">
     <h2>Login</h2>
-    
-      <!--<form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>-->
       <form novalidate [formGroup]="userForm" 
             (ngSubmit)="onSubmit(userForm.value)">
          <div class="form-group" >
@@ -14,7 +12,6 @@
                 formControlName="username" 
                 required 
             />
-            
         </div>
           
         <div class="form-group" >
@@ -34,5 +31,4 @@
             </div>  
         </div>
     </form>
-
 </div>

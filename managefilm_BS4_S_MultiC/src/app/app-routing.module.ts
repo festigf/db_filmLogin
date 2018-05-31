@@ -9,11 +9,17 @@ import { AuthGuard } from './_guards/auth.guards';
 import { LoginComponent } from './login/index';
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
+  
   { path: 'login', component: LoginComponent },
   { path: 'film', component: FilmComponent, canActivate: [AuthGuard] },
   { path: 'attore', component: AttoreComponent, canActivate: [AuthGuard] },
-  { path: 'attorefilm/:attore'  , component: AttoreFilmComponent }
+  { path: 'attorefilm/:attore'  , component: AttoreFilmComponent },
+  { path: '', component: HomeComponent },
+  {
+        path: '**',
+        redirectTo: '/home',
+        pathMatch: 'full'
+  }
 ];
 
 @NgModule({
