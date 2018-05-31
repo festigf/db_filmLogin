@@ -49,4 +49,11 @@ export class AuthenticationService {
         localStorage.removeItem('currentUser');
         console.log("remove currentUser")
     }
+    
+    iniLogout(): Observable<any> {
+        // remove user from local storage to log user out
+        localStorage.removeItem('currentUser');
+        console.log("remove currentUser");
+        return Observable.of("remove currentUser");
+    }
 }

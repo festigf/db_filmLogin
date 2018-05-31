@@ -12,7 +12,7 @@ import { FilmComponent } from './film/film.component';
 export class AppComponent implements OnInit {
   title = 'app';
   ngOnInit(){
-    this.authenticationService.logout();
+    this.authenticationService.iniLogout().subscribe(esito => esito);
   }
   loadedFeature = 'film';
   constructor(private authenticationService:AuthenticationService) { }

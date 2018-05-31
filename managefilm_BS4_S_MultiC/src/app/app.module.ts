@@ -20,8 +20,10 @@ import { AuthGuard } from './_guards/auth.guards';
 import { LoginComponent } from './login/index';
 import { AlertService, AuthenticationService } from './_services/index';
 
+
 @NgModule({
   declarations: [
+    
     DropdownDirective,
     AppComponent,
     AttoreComponent,
@@ -52,10 +54,10 @@ import { AlertService, AuthenticationService } from './_services/index';
   
 })
 export class AppModule implements OnInit { 
-  constructor(private authenticationService:AuthenticationService) { }
+ // constructor(private authenticationService:AuthenticationService) { }
   ngOnInit(){
-    console.log("AppModule");
-    this.authenticationService.logout();
+ //   console.log("AppModule");
+ //   this.authenticationService.logout();
   }
 
 }
