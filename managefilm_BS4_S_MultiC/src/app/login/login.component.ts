@@ -42,12 +42,12 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 data => {
                     console.log("data login:")
-                    console.log(data.data.url)
-                    this.router.navigate([data.data.url]); //this.returnUrl]);
+                    /*console.log(data.data.url)
+                    this.router.navigate([data.data.url]); //this.returnUrl]);*/
                 },
                 error => {
                     //this.alertService.error(error);
-                    console.log("error login:"+error.url)
+                    console.log("error login:"+error)
                     this.router.navigate(["/login"]);
                 });
        }    

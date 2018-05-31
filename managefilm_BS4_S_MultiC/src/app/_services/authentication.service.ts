@@ -31,19 +31,36 @@ export class AuthenticationService {
 
         console.log(options);  
         
-        return this.http.put('http://localhost:3000/authenticate',null, options)
+        return this.http.post('http://localhost:3000/authenticate',null, options)
             .map(user => {
-                // login successful if there's a jwt token in the response
+               /* // login successful if there's a jwt token in the response
                 if (user) { // && user.token
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user));
                     console.log("currentUser"+localStorage.getItem('currentUser'));
                 }
-
+                console.log("service user:")
+                console.log(user);*/
                 return user;
-            });
+            })
+            .catch(this.handleError);
+           
     }
 
+    private handleError (error: Response | any) {
+        // In a real world app, you might use a remote logging infrastructure
+        let errMsg: string;
+        if (error instanceof Response) {
+          const body = error.json() || '';
+          const err = body.error || JSON.stringify(body);
+          errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+        } else {
+          errMsg = error.message ? error.message : error.toString();
+        }
+        console.error(errMsg);
+        return Observable.throw(errMsg);
+      }
+    
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');

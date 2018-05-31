@@ -8,10 +8,55 @@ var sConnection={
 		password: '',
 		database: 'dbfilm',
 		multipleStatements: true};
+var passport = require('passport');
+var Strategy = require('passport-local').Strategy;
+var url = require('url');		
+var db = require('./db');		
 var app = express();
 app.use(express.static('.')); // Consente modalità "static"
 app.use(require('body-parser').json());
 app.use(require('body-parser').urlencoded({ extended: true }));
+
+///***************** passport
+passport.use(new Strategy(
+    function (username, password, cb) {
+        console.log(username);
+        console.log(password);
+        db.findByUsername(username, function (err, user) {
+            if (err) {
+                return cb(err);
+            }
+			if (!user) { return cb(null, false); }
+			console.log("passport>user:"+user.username);
+			console.log("passport>user:"+user.password+"pwd:"+password);
+            if (user.password != password) {
+                return cb(null, false);
+            }
+            return cb(null, user); // login OK
+        });
+    }));
+
+passport.serializeUser(function (user, cb) {
+	console.log("serializeUser:" + user.username);
+	
+    cb(null, user);
+});
+
+passport.deserializeUser(function (username, cb) {
+    db.findById(id, function (err, user) {
+		if (err) { return cb(err); }
+		
+        cb(null, user);
+    });
+});
+
+///*******
+app.use(passport.initialize());
+app.use(passport.session());
+/// fine passport
+
+
+
 
 app.use(function (req, res, next) {
 
@@ -170,7 +215,18 @@ app.put('/ModAttore', function(req, res){
   });
 });
 
-app.put('/authenticate', function(req, res){
+app.post('/authenticate',
+    passport.authenticate('local', { failureRedirect: '/login' }),
+    function(req, res) {
+	  console.log("authenticate:"+util.inspect(res, {showHidden: false, depth: null}));
+	  //res.sendStatus(201);// restituisce OK
+	  res.redirect('/');
+
+  }); 
+
+
+
+/*app.put('/authenticate', function(req, res){
 //	 console.log("authenticate:"+util.inspect(req, {showHidden: false, depth: null}));
      
 	console.log(req.query.username);
@@ -187,8 +243,8 @@ app.put('/authenticate', function(req, res){
 		Message: "Auth OK",
 		data:    {username:"pippo",
 				  url:"/login"}   
-	});*/
-});
+	});
+});*/
     
 app.listen(3000);
 console.log("http://localhost:3000/listAttori!");
