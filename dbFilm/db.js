@@ -57,9 +57,9 @@ exports.findByUsername = function(username, cb) {
 		console.log("username trovato rows:"+rows);
         if (!err) {
 			
-			console.log("username trovato rows:"+rows[0].username);
-            console.log("password trovato rows:"+rows[0].password);
-            console.log("username trovato fields:"+fields);
+			//console.log("username trovato rows:"+rows[0].username);
+            //console.log("password trovato rows:"+rows[0].password);
+            //console.log("username trovato fields:"+fields);
             return cb(null,rows[0]);
         }
         else {

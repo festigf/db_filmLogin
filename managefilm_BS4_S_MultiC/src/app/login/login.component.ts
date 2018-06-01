@@ -15,16 +15,19 @@ export class LoginComponent implements OnInit {
     returnUrl: string;
     userForm: FormGroup;
     user:User;
-
+    msgError:string;
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private authenticationService: AuthenticationService) { }
+        private authenticationService: AuthenticationService) { 
+            
+        }
 
         //,private alertService: AlertService
 
     ngOnInit() {
         // reset login status
+        this.msgError="";
         this.authenticationService.logout();
         this.userForm = new FormGroup({
             username: new FormControl("user1",Validators.required),
@@ -38,6 +41,7 @@ export class LoginComponent implements OnInit {
     onSubmit(formValue: User){
         console.log(formValue.username);
         console.log(this.userForm.value);
+        this.msgError="";
         this.authenticationService.login(this.userForm.value)
             .subscribe(
                 data => {
@@ -47,7 +51,8 @@ export class LoginComponent implements OnInit {
                 },
                 error => {
                     //this.alertService.error(error);
-                    console.log("error login:"+error)
+                    console.log("error login:"+error);
+                    this.msgError="Credenziali non valide";
                     this.router.navigate(["/login"]);
                 });
        }    

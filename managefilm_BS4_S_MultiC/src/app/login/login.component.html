@@ -33,6 +33,13 @@
                 <button class="btn btn-default" type="submit">Login</button>
             </div>  
         </div>
+        <div class="row">
+            <div class="col">
+                <div *ngIf="msgError" class="alert alert-success box-msg " role="alert">
+                    <strong>{{msgError}}</strong> 
+                </div>
+            </div>  
+        </div>
     </form>
 
 </div>
