@@ -220,7 +220,14 @@ app.post('/authenticate',
     function(req, res) {
 	  console.log("authenticate:"+util.inspect(res, {showHidden: false, depth: null}));
 	  //res.sendStatus(201);// restituisce OK
-	  res.redirect('/');
+	  res.status(200).send({ 
+		status:  200, 
+		Message: "login OK",
+		data:    {
+			url:"/"
+		}
+	});
+	  //res.redirect('/');
 
   }); 
 
